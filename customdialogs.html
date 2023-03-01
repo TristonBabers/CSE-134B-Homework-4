@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Custom Dialogs</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="assets/images/icons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="assets/images/icons/favicon-16x16.png" sizes="16x16">
+    <script type="text/javascript" src="node_modules/dompurify/dist/purify.js"></script>
+    <script type="module" src="scripts/customdialogs.js"></script>
+    <style>
+        body {
+            background-color: aliceblue;
+        }
+        h1 {
+            font-size: 3rem;
+        }
+        output {
+            border: 4px double black;
+            padding: 0.8rem;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<header>
+    <h1>Custom Dialogs</h1>
+</header>
+<body>
+    <button id="alert">Alert</button>
+    <button id="confirm">Confirm</button>
+    <button id="prompt">Prompt</button>
+    <dialog></dialog>
+    <output hidden></output>
+</body>
+</html>

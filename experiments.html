@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Triston Babers: Experiments</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="assets/images/icons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="assets/images/icons/favicon-16x16.png" sizes="16x16">
+    <!-- Styles -->
+    <link href="main.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Roboto:wght@300&display=swap&family=Lato:ital,wght@0,700;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+    <h1>Experiments</h1>
+    <button id="openHamburger"></button>
+    <a href="#openHamburger" class="hamToggleOn">
+        <img class="hamburger" src="assets/images/hamburger.webp" width="60px", height="60px">
+    </a>
+    <a href="#closeHamburger" class="hamToggleOff">
+        <img class="hamburger" src="assets/images/hamburger.webp" width="60px", height="60px">
+    </a>
+    <nav>
+        <ul>
+            <li>
+                <a href="index.html#about">Triston Babers</a>
+            </li>
+            <li>
+                <a href="index.html#resume">Resume</a>
+            </li>
+            <li>
+                <a href="index.html#projects">Projects</a>
+            </li>
+            <li>
+                <a href="index.html#contact">Contact</a>
+            </li>
+            <li>
+                <a href="notes.html">Notes</a>
+            </li>
+            <li>
+                <a href="experiments.html">Experiments</a>
+            </li>
+        </ul>
+    </nav>
+    <p>This page is where I show off some of my more <i>experimental</i> web-development work.</p>
+</header>
+<section id="codeUnexpected">
+    <h3>The code tag did not work as expected:</h3>
+    <code>
+        // Basic Spammer
+        #include <iostream>
+        using namespace std;
+
+        int i = length
+        for (int i = 0; i < length; ++i) {
+            cout << "Hello, this is spam number [" + i + "]!"
+        }
+    </code>
+</section>
+<section id="stonks">
+    <h3>Not Stonks</h3>
+    <p>Yeah, this is why I don't use Robinhood anymore. It also makes for a <s>mortifying</s> convenient figure.</p>
+    <figure>
+        <img width="400" height="700" src="assets/images/experiments/bad crypto.png" alt="Honestly, it's better that you can't see this">
+        <figcaption>This is r/wallstreetbets material</figcaption>
+      </figure>
+</section>
+<section id="importantForm">
+    <h3>This is the most important form in the world! <s>not really</s></h3>
+    <form action="https://preeminent-tapioca-032369.netlify.app/experiments.html", method="get">
+        <fieldset>
+            <legend>The Most Legendary of Forms</legend>
+            <label for="fish">Choose the best fish</label>
+            <select name="fish" id="fish">
+                <optgroup label="Swim, swim, swim!">
+                    <option value="goldFish">Gold Fish</option>
+                    <option value="jellyFish">Jelly Fish</option>
+                    <option value="redFish">Red Fish</option>
+                    <option value="blueFish">Blue Fish</option>
+                    <option value="oneFish">One Fish</option>
+                    <option value="twoFish">Two Fish</option>
+                    <option value="shark">Shark</option>
+                </optgroup>
+            </select>
+            <label for="pop">Choose your Pop</label>
+            <input list="sodas" name="pop" id="pop">
+                <datalist id="sodas">
+                    <option value="Dr Pepper">
+                    <option value="Sprite">
+                    <option value="Fanta">
+                    <option value="Koolaid">
+                    <option value="7-Up">
+                </datalist>
+            <br><br>
+            <label for="joke">Answer the Joke:</label>
+            <textarea id="joke" name="joke" rows="5" cols="33">Why did the chicken cross the road?</textarea>
+            <br><br>
+            <label for="userName">User Name:</label>
+            <input type="text" id="userName" name="userName">
+            <br>
+            <label for="pass">Password:</label>
+            <input type="password" id="pass" name="pass">
+            <br><br>
+            <input type="submit" value="Submit">
+        </fieldset>
+    </form>
+</section>
+<section id="dontTouch">
+    <h3>Don't Touch it!</h3>
+    <!-- There is a script here as a place holder, I want to make it crash the page if you touch this button-->
+    <script>
+    </script>
+    <audio controls>
+        <source src="/assets/audio/experiments/No No No No No !.mp3" type="audio/mp3">
+        Your browser does not support this.
+    </audio>
+</section>
+<section id="svgTest">
+    <h3>Wow, look at this SVG!!!</h3>
+    <svg height="210" width="500" role="img">
+    <title>A Test</title>
+    <polygon points="100,10 40,198 190,78 10,78 160,198" style="fill:rgb(133, 20, 226);stroke:rgb(0, 15, 218);stroke-width:5;fill-rule:nonzero;"/>
+    Sorry, no SVG for you
+    </svg>
+</section>
+<section id="randomPicture">
+    <h3>Random Picture</h3>
+    <p>Even I have no clue what this picture looks like!</p>
+    <picture>
+        <img src="https://source.unsplash.com/random/200x200?sig=1" alt="randomness">
+    </picture>
+</section>
+<section id="rickRoll">
+    <h3>I wonder what this link does...?</h3>
+    <a href="rickroll.html">definitely not suspicious</a>
+</section>
+<section id="canvasTest">
+    <h3>Canvas Test</h3>
+    <canvas id="myCanvas" width="320" height="300">
+    <script>
+        let canvas = document.getElementById('myCanvas');
+        let context = canvas.getContext('2d');
+
+        /* draw background */
+        context.fillStyle = 'green';
+        context.fillRect(0, 0, 320, 350);
+
+        /* draw a T */
+        context.fillStyle = 'blue';
+        context.fillRect(20, 20, 280, 50);
+        context.fillRect(140, 40, 50, 250);
+    </script>
+    <noscript>Error your javascript is malfunctioning!</noscript>
+</section>
+<section id="noIdeas">
+    <h3>I ran out of ideas at this point</h3>
+    <span>I do feel very <strong>strongly</strong> about this <b>bold</b> take on a span element!</span>
+    <div id="theChosenOne">What if I told you this is the only div in the document?</div>
+    <p>woah, it's an ordered list</p>
+    <ol>
+        <li>Now</li>
+        <li>Everything</li>
+        <li>Can</li>
+        <li>Proceed</li>
+        <li>In</li>
+        <li>An</li>
+        <li>Orderly</li>
+        <li>Pineapple</li>
+    </ol>
+</section>
+<footer id="contact">
+    <hr>
+    <p>Email: Triston.Babers.Official@gmail.com</p>
+    <p>Phone#: (252) 876-8922</p>
+    <p>GitHub: <a href="https://github.com/TristonBabers">@TristonBabers</a></p>
+</footer>
+</body>
+</html>

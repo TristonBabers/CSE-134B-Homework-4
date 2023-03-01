@@ -1,0 +1,404 @@
+:root {
+    --navBarFont: 'Lato', Tahoma;
+    --headingFont: 'Dancing Script', cursive, sans;
+    --subHeadingFont: calibri, sans-serif;
+    /** Default Font */
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+
+    --navColorPrimary: #009efa;
+    --navColorSecondary: rgb(0, 101, 168);
+    --navFontHover: #ffd000;
+    --navBackgroundHover: #0300a1b7;
+
+    --backgroundLight: #FFF;
+    --backgroundDark: #000;
+    --footerBackground: #89b5bb;
+}
+
+/** Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}   
+
+/** In the Future implement JS to do Dark Mode:
+    // I just need to swap the backgroundDark and backgroundLight variables
+    // to flip the color scheme. And add these two lines:
+body {
+    background-color: var(--backgroundLight);
+}
+
+* {
+    color: var(--backgroundDark);
+}*/
+
+/** Home-Page Related CSS */
+section {
+    display: inline-block;
+    margin-top: 0;
+    margin-left: 5rem;
+    margin-right: 2 rem;
+    margin-bottom: 5rem;
+    scroll-margin-top: 10ch;
+}
+
+p {
+    font-size: 1.2rem;
+    margin: 0.8rem;
+}
+
+aside {
+    margin-left: 5rem;
+    float: right;
+}
+
+#homeHeader picture img {
+    position: staic;
+    width: 100%;
+    height: 100%;
+}
+
+em {
+    font-style: unset;
+    font-weight: 1000;
+    color: var(--navColorPrimary);
+}
+
+h2 {
+    margin-bottom: 1ch;
+    font-family: var(--subHeadingFont);
+    font-size: 3rem;
+}
+
+/** Footer Styling */
+hr {
+    border-top: 0.3ch solid var(--backgroundDark);
+    
+}
+
+footer {
+    background-color: var(--footerBackground);
+    font-family: var(--subHeadingFont);
+    text-align: center;
+    padding-bottom: 2rem;
+}
+footer a {
+    color: var(--backgroundDark);
+}
+
+/** Notes & Experiments Related CSS */
+h1 {
+    font-family: var(--headingFont);
+    font-weight: 300;
+    font-size: 3rem;
+    position: static;
+    text-align: justify;
+
+    padding-top: 3rem;
+    padding-left: 4rem;
+    padding-bottom: 1rem;
+    background: radial-gradient(rgb(221, 202, 141), rgb(199, 185, 128)); 
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-family: var(--subHeadingFont);
+    margin: 0.8rem;
+}
+
+td {
+    padding: 2ch 2ch 2ch 3ch;
+    border: solid var(--backgroundDark);
+}
+
+th {
+    background-color: var(--backgroundLight);
+}
+
+.fall {
+    background-color: #ffec96;
+}
+.winter {
+    background-color: #96ecff;
+}
+.spring {
+    background-color: #96ffb4;
+}
+.summer {
+    background-color: #ffab96;
+}
+#currentTerm {
+    background-color: lightYellow;
+}
+
+/** Non-Home Page only CSS */
+/* - I implemented a Grid that simply splits all sections into 2 columns
+ * for easier navigation; but will combine to single column if device gets
+ * small enough for tablet or mobile. (Rest in screen size @media)
+ */
+body:not(#homeBody) {
+    display: grid;
+    grid-auto-rows: auto;
+    grid-template-columns: 1fr 1fr ;
+}
+
+header:not(#homeHeader) {
+    display: grid;
+    grid-column: 1 / 3
+}
+
+body:not(#homeBody) footer {
+    grid-column: 1 / 3
+}
+
+header:not(#homeHeader) p {
+    text-align: left;
+    padding: 0 0 1rem 1.5rem;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+/** Shared Navigation between Screen Sizes */
+header nav ul {
+    gap: 5px;
+}
+
+/** Desktop Screen */
+@media (min-width: 1500px) {
+    html {
+        /** We can't see the space covered by Nav, so resize page */
+        margin-top: calc(12px + 2.5vw);
+    }
+
+    nav ul li a {
+        font-family: var(--navBarFont);
+        font-size: calc(8px + 1.5vw);
+        display: block;
+        text-decoration: none;
+        font-weight: 1000;
+
+        /* Color background when hovering a navlink*/
+        padding-top: calc((12px + 2.5vw)/4 + 1px);
+        padding-bottom: 0;
+        padding-left: 1ch;
+        padding-right: 1ch; 
+        color: var(--backgroundDark);
+    }
+
+    nav {	
+        position: fixed;	
+        top: 0;	
+        width: 100%;	
+        height: calc(12px + 2.5vw);	
+        background: linear-gradient(var(--navColorSecondary), var(--navColorPrimary));	
+    }
+
+    body:not(#homeBody) section:nth-child(even) {
+        grid-column: 1 / 2;
+    }
+    
+    body:not(#homeBody) section:nth-child(odd) {
+        grid-column: 2 / 3;
+    }
+
+    header {
+        text-align: center;
+    }
+
+    nav ul li {
+        display: inline-block;
+    }
+
+    nav ul li a:hover {
+        color: var(--navFontHover);
+        transition: color 0.2s ease-in;
+        background-color: var(--navBackgroundHover);
+        transition: background-color 0.1s linear;
+    }
+
+    #openHamburger, a[href="#openHamburger"], a[href="#closeHamburger"]  {
+        display: none;
+    }
+
+    .iframeReplace {
+        display: none;
+    }
+}
+
+/** Small or Tablet Screen */
+/* NOTE TO SELF: If I'm changing these breakpoints, I also need to 
+ * update the preload and media attributes for the banner images in the HTML <head>!!!
+ *
+ * Also this media query is really complicated, but it's just trying to only
+ * run in scenarios where the other 2 are not already running, as doubling
+ * up is confusing to deal with. 
+ */
+@media (max-width: 1500px) and (min-width: 700px) {
+    html {
+        /** We can't see the space covered by Nav, so resize page */
+        margin-top: calc(12px + 2.5vw);
+    }
+
+    nav ul li a {
+        font-family: var(--navBarFont);
+        font-size: calc(8px + 1.5vw);
+        display: block;
+        text-decoration: none;
+        font-weight: 1000;
+        
+        /* Color background when hovering a navlink*/
+        padding-top: 0;
+        padding-bottom: calc((12px + 2.5vw)/4);
+        padding-left: 1ch;
+        padding-right: 1ch; 
+        color: var(--backgroundDark);
+    }
+
+    nav {	
+        position: fixed;	
+        top: 0;	
+        width: 100%;	
+        height: calc(12px + 2.5vw);	
+        background: linear-gradient(var(--navColorSecondary), var(--navColorPrimary));	
+    }
+
+    body:not(#homeBody) section {
+        grid-column: 1 / 3;
+    }
+
+    header {
+        text-align: center;
+    }
+
+    nav ul li {
+        display: inline-block;
+    }
+
+    nav ul li a:hover {
+        color: var(--navFontHover);
+        transition: color 0.2s ease-in;
+        background-color: var(--navBackgroundHover);
+        transition: background-color 0.1s linear;
+    }
+
+    #openHamburger, a[href="#openHamburger"], a[href="#closeHamburger"]  {
+        display: none;
+    }
+
+    .iframeReplace {
+        display: none;
+    }
+}
+
+/** Mobile Navigation */
+@media (mobile) or (max-width: 700px) {
+    html {
+        /** We can't see the space covered by Nav, so resize page */
+        margin-top: 13vh;
+    }
+
+    /** Mobile wants to conserve as much space as possible */
+    h2, h3, p, aside, section, picture, nav {
+        padding: 0;
+        margin: 0;
+        max-width: 100%;
+    }
+
+    /* iFrames will be replaced with picture elements that were previously display:hidden
+     * as most iframes do not render well on mobile
+     */
+    iframe {
+        display: none;
+    }
+
+    nav ul li a {
+        font-family: var(--navBarFont);
+        font-size: 2rem;
+        display: block;
+        width: 70vw;
+        text-decoration: none;
+        font-weight: 1000;
+        max-width: 100%;
+
+        /* Color background when hovering a navlink*/
+        padding-top: 4vh;
+        padding-bottom: 2vh;
+        padding-left: 1ch;
+        padding-right: 0; 
+        margin: 0;
+        color: var(--backgroundDark);
+    }
+
+    aside img {
+        width: 100%;
+    }
+    
+    body:not(#homeBody) section {
+        grid-column: 1 / 3;
+    }
+    
+    header {
+        text-align: left;
+    }
+
+    /* Manipulate Hamburgers */
+    .hamToggleOn {
+        display: block;
+        position: fixed;
+        width: 6vh;
+        height: 6vh;
+        top: 2vh;
+        right: 2vh;
+        margin-right: 4vh;
+        float: right;
+        z-index: 9001;
+      }
+      .hamToggleOff {
+        display: none;
+        position: fixed;
+        width: 6vh;
+        height: 6vh;
+        top: 2vh;
+        right: 2vh;
+        margin-right: 4vh;
+        float: right;
+        z-index: 9001;
+      }
+
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 13vh;
+        overflow: hidden;
+        transition: height 0.5s;
+        background: linear-gradient(var(--navColorSecondary), var(--navColorPrimary));
+      }
+      nav ul {
+        height:0vh;
+        display: block;
+      }
+      #openHamburger {
+        display:none;
+      }
+      
+      #openHamburger:target ~ a[href="#openHamburger"]{
+        display: none;
+      }
+      #openHamburger:target ~ a[href="#closeHamburger"]{
+        display: inline-block;
+      }
+      #openHamburger:target ~ nav {
+        height: 75vh;
+        background: linear-gradient(var(--navColorSecondary), var(--navColorPrimary));
+      }
+    
+    /** Link to Stack Overflow where I learned these CSS shenanigans:
+     * https://stackoverflow.com/questions/42267467/how-to-toggle-effect-in-div-using-only-css
+     */
+}

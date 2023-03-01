@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Triston Babers: Home</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="assets/images/icons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="assets/images/icons/favicon-16x16.png" sizes="16x16">
+    <!-- Preload Images -->
+    <link rel="preload" as="img" href="/assets/images/banner/Portfolio-Mobile.jpg" media="(mobile) or (max-width: 700px)">
+    <link rel="preload" as="img" href="/assets/images/banner/Portfolio-Large.webp" media="not (mobile) and (max-width: 1500px)">
+    <!-- Styles -->
+    <link href="main.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Roboto:wght@300&display=swap&family=Lato:ital,wght@0,700;1,900&display=swap" rel="stylesheet">
+</head>
+<body id="homeBody">
+<header id="homeHeader">
+    <!-- Reminder to remove width & height when switching to CSS! -->
+    <picture id="bannerImg">
+        <source media="(mobile) or (max-width: 700px)" srcset="/assets/images/banner/Portfolio-Mobile.jpg">
+        <source media="not (mobile) and (max-width: 1500px)" srcset="/assets/images/banner/Portfolio-Large.webp">
+        <img src="/assets/images/banner/Portfolio-Large.webp" alt="Image of Triston Babers at his Computer, he looks rather busy">
+    </picture>
+    <button id="openHamburger"></button>
+    <a href="#openHamburger" class="hamToggleOn">
+        <img class="hamburger" src="assets/images/hamburger.webp" width="60px", height="60px">
+    </a>
+    <a href="#closeHamburger" class="hamToggleOff">
+        <img class="hamburger" src="assets/images/hamburger.webp" width="60px", height="60px">
+    </a>
+    <nav>
+        <ul>
+            <li>
+                <a href="#about">Triston Babers</a>
+            </li>
+            <li>
+                <a href="#resume">Resume</a>
+            </li>
+            <li>
+                <a href="#projects">Projects</a>
+            </li>
+            <li>
+                <a href="#contact">Contact</a>
+            </li>
+            <li>
+                <a href="notes.html">Notes</a>
+            </li>
+            <li>
+                <a href="experiments.html">Experiments</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main>
+<section id="about">
+    <h2>About Me</h2>
+    <aside>
+        <img width="500" height="650" src="assets/images/surf%20picture.jpg" alt="Picture of Triston at the Beach" draggable="false">
+        <p><em>hit:</em> JoJo References</p>
+        <p><em>miss:</em> Chalkboards (they scare me)</p>
+    </aside>
+    <p>I am a Computer Engineering Major at UCSD. My favorite hobbies are reading, playing videogames, and watching Anime. I also go surfing sometimes, as you can see by the image.</p>
+</section>
+<br>
+<section id="resume">
+    <h2>Resume</h2>
+    <iframe src="/assets/documents/Triston%20Babers%20Resume.pdf" width="900" height="700"></iframe>
+    <p class="iframeReplace">
+        You can view my Resume by clicking here: <a href="/assets/documents/Triston%20Babers%20Resume.pdf">Triston Babers' Resume</a>!
+    </p>
+</section>
+<br>
+<section id="projects">
+    <h2>Projects</h2>
+    <p>Recipe Manager Application made during Fall 2022, part of UCSD's CSE 110 class assignment. <a href="https://github.com/cse110-sp21-group36/cse110-sp21-group36">Link to Project Github Page</a>.</p>
+    <iframe name="Framename" src="https://cse110-sp21-group36.github.io/cse110-sp21-group36/source/recipe_manager.html" width="800" height="600"></iframe>
+
+    <!-- Reminder, template here -->
+    <template>
+        <p>This is another example project at this website: _____</p>
+        <iframe></iframe>
+        <p>Reminder: I want to make the website embedding look better somehow</p>
+    </template>
+</section>
+</main>
+<footer id="contact">
+    <hr>
+    <p>Email: Triston.Babers.Official@gmail.com</p>
+    <p>Phone#: (252) 876-8922</p>
+    <p>GitHub: <a href="https://github.com/TristonBabers">@TristonBabers</a></p>
+</footer>
+</body>
+</html>

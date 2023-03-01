@@ -51,10 +51,10 @@ function init() {
             let result = window.prompt('What is your name?');
             output.firstElementChild = field.value;
             if (result === '' || result === null) {
-                output.textContent = 'User didn’t enter anything';
+                output.innerHTML = 'User didn’t enter anything';
             } else {
                 let clean = DOMPurify.sanitize(result);
-                output.textContent = `Prompt Result: ${clean}`;
+                output.innerHTML = `Prompt Result: ${clean}`;
             }
         }, 0);
     });

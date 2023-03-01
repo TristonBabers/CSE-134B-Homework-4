@@ -2,16 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Triston Babers: Notes</title>
+    <title>Triston Babers: nativedialogs</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="assets/images/icons/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="assets/images/icons/favicon-16x16.png" sizes="16x16">
+    <script src="scripts/homework4.js"></script>
+    <style>
+        h1 {
+            font-size: 3rem;
+        }
+        output {
+            border: 4px double black;
+            padding: 0.8rem;
+            font-size: 1.5rem;
+        }
+    </style>
 </head>
+<header>
+    <h1>Simple Dialogs?</h1>
+</header>
 <body>
     <button id="alert">Alert</button>
-    <button id="alert">Confirm</button>
-    <button id="alert">Confirm</button>
-    <button id="alert">Confirm</button>
+    <button id="confirm">Confirm</button>
+    <button id="prompt">Prompt</button>
+    <button id="saferPrompt">Safer Prompt</button>
+    <br><br>
+    <hr>
+    <textarea hidden cols="45" placeholder="Enter something, please" defaultValue="User didn’t enter anything"></textarea>
+    <br>
+    <output hidden></output>
 </body>
-<header>
+</html>

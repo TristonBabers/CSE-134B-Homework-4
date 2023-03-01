@@ -6,7 +6,6 @@ function init() {
     let confirm = document.getElementById('confirm');
     let prompt = document.getElementById('prompt');
     let saferPrompt = document.getElementById('saferPrompt');
-    let field = document.querySelector('textarea');
     let output = document.querySelector('output');
     
     alert.addEventListener('click', (e) => {
@@ -23,7 +22,7 @@ function init() {
         setTimeout(() => {
             output.hidden = false;
             let result = window.confirm('Do you confirm this?');
-            output.firstElementChild = field.value;
+            output.firstElementChild = output.value;
             output.textContent = `Confirm result: ${result}`;
         }, 0);
     });
@@ -34,7 +33,7 @@ function init() {
         setTimeout(() => {
             output.hidden = false;
             let result = window.prompt('What is your name?');
-            output.firstElementChild = field.value;
+            output.firstElementChild = output.value;
             if (result === '' || result === null) {
                 output.innerHTML = 'User didn’t enter anything';
             } else {
@@ -43,13 +42,13 @@ function init() {
         }, 0);
     });
 
-    saferPrompt.addEventListener('click', function(e) {
+    saferPrompt.addEventListener('click', (e) => {
         output.hidden = true;
 
         setTimeout(() => {
             output.hidden = false;
             let result = window.prompt('What is your name?');
-            output.firstElementChild = field.value;
+            output.firstElementChild = output.value;
             if (result === '' || result === null) {
                 output.innerHTML = 'User didn’t enter anything';
             } else {

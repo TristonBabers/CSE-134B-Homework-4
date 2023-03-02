@@ -8,7 +8,7 @@
     <link rel="icon" type="image/png" href="assets/images/icons/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="assets/images/icons/favicon-16x16.png" sizes="16x16">
     <script type="text/javascript" src="node_modules/dompurify/dist/purify.js"></script>
-    <script type="module" src="scripts/customdialogs.js"></script>
+    <script type="module" src="scripts/customdialog.js"></script>
 </head>
 <header>
     <h1>Custom Dialogs</h1>
@@ -17,14 +17,34 @@
 <main>
     <dialog id="alertDialog">
         <form method="dialog">
-            <p>This is an Alert!</p>
+            <p>Alert pressed!</p>
             <button value="default">Ok</button>
         </form>
     </dialog>
-
     <button id="alert">Alert</button>
+
+    <dialog id="confirmDialog">
+        <form method="dialog">
+            <p>Do you confirm this?</p>
+            <button value="cancel">Cancel</button>
+            <button value="default">Ok</button>
+        </form>
+    </dialog>
     <button id="confirm">Confirm</button>
+
+    <dialog id="promptDialog">
+        <form method="dialog">
+            <label for="promptName">What is your name?</label>
+            <br>
+            <input type="textArea" id="promptName" name="promptName"></input>
+            <br><br>
+            <button value="cancel">Cancel</button>
+            <button value="default">Ok</button>
+        </form>
+    </dialog>
     <button id="prompt">Prompt</button>
+    <br>
+    <output></output>
 </main>
 </body>
 </html>

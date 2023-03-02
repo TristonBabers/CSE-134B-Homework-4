@@ -1,11 +1,11 @@
 window.addEventListener('DOMContentLoaded', init);
 
 function init() {
-    let alert = document.getElementById('alert');
-    let confirm = document.getElementById('confirm');
-    let prompt = document.getElementById('prompt');
-    let saferPrompt = document.getElementById('saferPrompt');
-    let output = document.querySelector('output');
+    const alert = document.getElementById('alert');
+    const confirm = document.getElementById('confirm');
+    const prompt = document.getElementById('prompt');
+    const saferPrompt = document.getElementById('saferPrompt');
+    const output = document.querySelector('output');
     
     alert.addEventListener('click', (e) => {
         output.hidden = true;

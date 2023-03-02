@@ -9,28 +9,22 @@
     <link rel="icon" type="image/png" href="assets/images/icons/favicon-16x16.png" sizes="16x16">
     <script type="text/javascript" src="node_modules/dompurify/dist/purify.js"></script>
     <script type="module" src="scripts/customdialogs.js"></script>
-    <style>
-        body {
-            background-color: aliceblue;
-        }
-        h1 {
-            font-size: 3rem;
-        }
-        output {
-            border: 4px double black;
-            padding: 0.8rem;
-            font-size: 1.5rem;
-        }
-    </style>
 </head>
 <header>
     <h1>Custom Dialogs</h1>
 </header>
 <body>
+<main>
+    <dialog id="alertDialog">
+        <form method="dialog">
+            <p></p>
+            <button value="default">Ok</button>
+        </form>
+    </dialog>
+
     <button id="alert">Alert</button>
     <button id="confirm">Confirm</button>
     <button id="prompt">Prompt</button>
-    <dialog></dialog>
-    <output hidden></output>
+</main>
 </body>
 </html>

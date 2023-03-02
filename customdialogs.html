@@ -9,6 +9,19 @@
     <link rel="icon" type="image/png" href="assets/images/icons/favicon-16x16.png" sizes="16x16">
     <script type="text/javascript" src="node_modules/dompurify/dist/purify.js"></script>
     <script type="module" src="scripts/customdialog.js"></script>
+    <style>
+        h1 {
+            font-size: 3rem;
+        }
+        body {
+            background-color: aliceblue;
+        }
+        output {
+            border: 4px double black;
+            padding: 0.8rem;
+            font-size: 1.5rem;
+        }
+    </style>
 </head>
 <header>
     <h1>Custom Dialogs</h1>
@@ -26,8 +39,8 @@
     <dialog id="confirmDialog">
         <form method="dialog">
             <p>Do you confirm this?</p>
-            <button value="cancel">Cancel</button>
-            <button value="default">Ok</button>
+            <button value="false">Cancel</button>
+            <button value="true">Ok</button>
         </form>
     </dialog>
     <button id="confirm">Confirm</button>
@@ -43,8 +56,8 @@
         </form>
     </dialog>
     <button id="prompt">Prompt</button>
-    <br>
-    <output></output>
+    <br><br>
+    <output hidden></output>
 </main>
 </body>
 </html>

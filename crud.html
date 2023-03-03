@@ -36,16 +36,17 @@
     <dialog id="addNewDialog">
         <form method="dialog">
             <label for="postTitle">Title: </label>
-            <input type="text" id="postTitle" name="postTitle"></input>
+            <input type="text" id="postTitle" name="postTitle">
             <label for="summary">Post Summary: </label>
             <textarea id="summary" name="summary" rows="5" cols="33" placeholder="Brief Summary of the Post"></textarea>
+            <label for="bgColor">Post Color: </label>
+            <input type="color" name="bgColor" id="bgColor" value="#FFFFFF">
             <button value="cancel">Cancel</button>
             <button value="confirm">Confirm</button>
         </form>
     </dialog>
     <button id="addNew">Add New Post</button>
     <br><br>
-<main id="blogEntries">
-</main>
+<main id="blogEntries"></main>
 </body>
 </html>

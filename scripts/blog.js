@@ -1,4 +1,4 @@
-import { BlogEntry } from "./blogEntry.js";
+import { BlogEntry, deleteEntry } from "./blogEntry.js";
 window.addEventListener('DOMContentLoaded', init);
 customElements.define('blog-entry', BlogEntry);
 
@@ -33,9 +33,15 @@ function init() {
      */
     const postTitle = document.getElementById('postTitle');
     const summary = document.getElementById('summary');
+    const bgColor = document.getElementById('bgColor');
     let idNum = 0;
     addNewDialog.addEventListener('close', (event) => {
+        // If Cancel is hit don't add anything
         if (addNewDialog.returnValue === 'cancel') {
+            // Reset fields on close
+            postTitle.value = ``;
+            summary.value = ``;
+            bgColor.value = `#FFFFFF`;
             return;
         }
 
@@ -49,24 +55,21 @@ function init() {
         
         // Calculate Date
         /* reference: https://stackoverflow.com/questions/23593052/format-javascript-date-as-yyyy-mm-dd */
-        let date = new Date().toLocaleString(undefined, {year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', hour12: false, minute:'2-digit', second:'2-digit'})
+        let date = new Date().toLocaleString(undefined, {year: 'numeric', month: '2-digit', day: '2-digit',
+                hour: '2-digit', hour12: true, minute:'2-digit', second:'2-digit'})
         let formattedDate = date;
 
         // Create and Append Entry to shadowRoot
-        let blogEntry = new BlogEntry(cleanTitle, cleanSummary, formattedDate, entryID, '#FFF'); // TODO: Background color is just white (NOT IMPLEMENTED)
+        let blogEntry = new BlogEntry(cleanTitle, cleanSummary, formattedDate, entryID, bgColor.value);
+        blogEntry.id = `blogEntry${entryID}`;
         shadowRoot.appendChild(blogEntry);
 
         // Reset fields on close
-        console.log(`postTitle: ${postTitle}`); // DEBUG
         postTitle.value = ``;
         summary.value = ``;
+        bgColor.value = `#FFFFFF`;
     });
 
-    // Delete Event Listener
-    deleteDialog.addEventListener('close', (event) => {
-        // TODO: NOT DONE
-        uncertain.innerHTML = `I'm not sure`;
-    });
     // Extra [I'm not sure] button on Delete
     const uncertain = document.getElementById('uncertain');
     uncertain.addEventListener('click', () => {

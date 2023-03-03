@@ -1,4 +1,19 @@
-export class BlogEntry extends HTMLElement {
+/** Here's the HTML Element format applied to the Shadow DOM:
+<blog-entry>
+    <article id="post${entryId}" class="blogEntry">
+        <h3>${title}</h3>
+        <p>${summary}</p>
+        <time>Posted at ${time}.</time>
+        <button class="delete" id="delete${entryId}" onclick="deleteEntry(${entryId})">Delete</button>
+    </article>
+    <style>
+        #post${entryId} {
+            background-color: ${bgColor};
+        }
+    </style>
+</blog-entry>
+*/
+class BlogEntry extends HTMLElement {
     constructor(title, summary, time, id, bgColor) {
         super();
 
@@ -17,28 +32,34 @@ export class BlogEntry extends HTMLElement {
 <h3>${title}</h3>
 <p>${summary}</p>
 <time>Posted at ${time}.</time>
+<button class="delete" id="delete${entryId}" onclick="deleteEntry(${entryId})">Delete</button>
 `;
         // Attach Blog Entry onto Document
         this.attachShadow({mode: 'open'});
         this.shadowRoot.append(entryContent, bgColorStyle);
     }
-    /*
-    function deleteEntry() {
-        //NOTDONE;
-    }*/
 }
+ 
+function deleteEntry(id) {
+    window.alert(`Attempting to delete post${id}`); // DEBUG
+    let blogEntry = document.getElementById(`blogEntry${id}`);
+    let shadowRoot = blogEntry.shadowRoot;
+    let edit = document.createElement('h1');
+    edit.textContent = "WOWOWW";
+    blogEntry.shadowRoot.innerHTML = '';
+};
+HTMLButtonElement.prototype.deleteEntry = deleteEntry;
+// This has to be appended to the document, otherwise its not findable for some reason
 
-/** Here's an example of the HTML format applied to the Shadow DOM:
-<blog-entry>
-    <article id="${entryId}" class="blogEntry">
-        <h3>${title}</h3>
-        <p>${summary}</p>
-        <time>Posted at ${time}.</time>
-    </article>
-    <style>
-        #post${entryId} {
-            background-color: ${bgColor};
-        }
-    </style>
-</blog-entry>
-*/
+function editEntry(id) {
+    window.alert(`Attempting to edit post${id}`); // DEBUG
+    let blogEntry = document.getElementById(`blogEntry${id}`);
+    let shadowRoot = blogEntry.shadowRoot;
+    let edit = document.createElement('h1');
+    edit.textContent = "WOWOWW";
+    blogEntry.shadowRoot.innerHTML = '';
+};
+HTMLButtonElement.prototype.deleteEntry = deleteEntry;
+
+export{BlogEntry, deleteEntry};
+

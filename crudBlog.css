@@ -1,0 +1,98 @@
+:root {
+    /** Default Font */
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+
+    --btnBgDefault: rgb(235, 235, 235);
+    --btnBgHover: rgb(158, 158, 158);
+
+    --dialogBorderRadius: 8px;
+    --btnBorderRadius: 16px;
+}
+
+label {
+    font-family: 'Lato', Tahoma;
+    font-weight: 900;
+}
+
+body {
+    /** Background Image from: https://wall.alphacoders.com/big.php?i=1184118 */
+    background-image: url("assets/images/blog/hallowKnightWallpaper.avif");
+    
+    background-attachment: fixed;
+    background-Size: cover;
+}
+
+#addNew { 
+    position: fixed;
+    right: 13vw;
+    top: 10vh;
+    background-color: aqua;
+    float: right;
+}
+
+#addNew:hover {
+    background-color: rgb(2, 134, 134);
+}
+
+main {
+    background-color: rgba(240, 248, 255, 0.623);
+    margin: 0 10vw 0 10vw;
+    padding: 2rem;
+    border-radius: 2rem;
+}
+
+header {
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+
+button {
+    display: block;
+    width: 3px;
+    font-size: 1.2rem;
+    display: block;
+    margin-top: 2rem;
+    width: 130px;
+    height: 3rem;
+    border-radius: var(--btnBorderRadius);
+    border: none;
+    background-color: var(--btnBgDefault);
+    font-weight: 700;
+}
+button:hover {
+    background-color: var(--btnBgHover);
+}
+.cancel {
+    order: 0;
+}
+
+input[type="color"] {
+    border-radius: 30px;
+}
+
+h3 {
+    color:rgb(0, 101, 168);
+    font-size: 30rem;
+}
+
+dialog {
+    padding: 0.8rem;
+    font-size: 1.5rem;
+    border-radius: var(--dialogBorderRadius);
+    border-color: #FFF;
+    
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: end;
+}
+
+form button {
+    align-self: center;
+}

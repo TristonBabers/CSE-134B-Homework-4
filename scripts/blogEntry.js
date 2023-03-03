@@ -42,44 +42,41 @@ class BlogEntry extends HTMLElement {
     }
 }
 
-
 /* I honestly wanted the following functions to be a part of the class declared above, but I
- * had a lot of trouble implementing that, so this is the work around.
+ * had a lot of trouble implementing that, so I used these global functions as a work around.
  */ 
 function deleteEntry(id) {
     let blogEntry = document.getElementById(`blogEntry${id}`);
-    blogEntry.shadowRoot.textContent = '';
+    blogEntry.shadowRoot.innerHTML = '';
 };
 
 function getEntryTitle(id) {
     let blogEntry = document.getElementById(`blogEntry${id}`);
-    return blogEntry.shadowRoot.firstChild.firstChild.nextSibling.textContent;
+    return blogEntry.shadowRoot.firstChild.firstChild.nextSibling.innerHTML;
 }
 
 function getEntrySummary(id) {
     let blogEntry = document.getElementById(`blogEntry${id}`);
-    return blogEntry.shadowRoot.firstChild.firstChild.nextSibling.nextSibling.nextSibling.textContent;
+    return blogEntry.shadowRoot.firstChild.firstChild.nextSibling.nextSibling.nextSibling.innerHTML;
 }
 
 function getBgColor(id) {
     let blogEntry = document.getElementById(`blogEntry${id}`);
-    return blogEntry.shadowRoot.firstChild.nextSibling.textContent.slice(-11, -4);
+    return blogEntry.shadowRoot.firstChild.nextSibling.innerHTML.slice(-11, -4);
 }
 
 function editEntry(title, summary, id, bgColor) {
-    
     // Edit Title
     let blogEntry = document.getElementById(`blogEntry${id}`);
-    blogEntry.shadowRoot.firstChild.firstChild.nextSibling.nextSibling.nextSibling.textContent = title;
+    blogEntry.shadowRoot.firstChild.firstChild.nextSibling.innerHTML = title;
 
     // Edit Summary
-    blogEntry.shadowRoot.firstChild.firstChild.nextSibling.nextSibling.nextSibling.textContent = summary;
+    blogEntry.shadowRoot.firstChild.firstChild.nextSibling.nextSibling.nextSibling.innerHTML = summary;
 
     // Edit BgColor
-    let bgStyle = blogEntry.shadowRoot.firstChild.nextSibling.textContent;
+    let bgStyle = blogEntry.shadowRoot.firstChild.nextSibling.innerHTML;
     let updatedBgStyle = bgStyle.slice(0, -11) + bgColor + bgStyle.slice(-4, bgStyle.length);
-    blogEntry.shadowRoot.firstChild.nextSibling.textContent = updatedBgStyle;
+    blogEntry.shadowRoot.firstChild.nextSibling.innerHTML = updatedBgStyle;
 };
 
 export{BlogEntry, deleteEntry, getEntryTitle, getEntrySummary, getBgColor, editEntry};
-

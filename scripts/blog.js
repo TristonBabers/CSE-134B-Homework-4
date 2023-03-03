@@ -1,36 +1,23 @@
-import { BlogEntry, deleteEntry } from "./blogEntry.js";
+import { BlogEntry, deleteEntry, getEntryTitle, getEntrySummary, getBgColor, editEntry } from "./blogEntry.js";
 window.addEventListener('DOMContentLoaded', init);
 customElements.define('blog-entry', BlogEntry);
 
 function init() {
-    // **Important** Create ShadowRoot to attach Blog entries to
-    const shadowRoot = document.getElementById('blogEntries');
-
-    // Select "Display Dialog Button" Elements
-    const addNewButton = document.getElementById('addNew');
-    const deleteButton = document.getElementById('delete');
-
-    // Output & promptName
+    // Initialize Blog Post Components
     const blogEntries = document.getElementById('blogEntries');
-
-    // Dialog Elements
+    const addNewButton = document.getElementById('addNew');
     const addNewDialog = document.getElementById('addNewDialog');
     const deleteDialog = document.getElementById('deleteDialog');
+    const editDialog = document.getElementById('editDialog');
 
-    // Show Modals
+    // AddNew Event Listener
+    /* The addNew button is seperate from entries and exists to append new
+     * BlogEntry custom objects onto the page.
+     */
     addNewButton.addEventListener('click', showAddNew);
     function showAddNew() {
         addNewDialog.showModal();
     }
-    deleteButton.addEventListener('click', showDelete);
-    function showDelete() {
-        deleteDialog.showModal();
-    }
-
-    // AddNew Event Listener
-    /* The addNew button is seperate from entries and exists to initialize new
-     * BlogEntry custom objects onto the shadowRoot.
-     */
     const postTitle = document.getElementById('postTitle');
     const summary = document.getElementById('summary');
     const bgColor = document.getElementById('bgColor');
@@ -50,19 +37,18 @@ function init() {
         let cleanSummary = DOMPurify.sanitize(summary.value);
 
         // Create Unique ID
-        let entryID = idNum; // TODO: Make this a UUID (Otherwise could collide and Y2k38)
+        let entryId = idNum;
         idNum += 1;
         
         // Calculate Date
         /* reference: https://stackoverflow.com/questions/23593052/format-javascript-date-as-yyyy-mm-dd */
         let date = new Date().toLocaleString(undefined, {year: 'numeric', month: '2-digit', day: '2-digit',
                 hour: '2-digit', hour12: true, minute:'2-digit', second:'2-digit'})
-        let formattedDate = date;
 
-        // Create and Append Entry to shadowRoot
-        let blogEntry = new BlogEntry(cleanTitle, cleanSummary, formattedDate, entryID, bgColor.value);
-        blogEntry.id = `blogEntry${entryID}`;
-        shadowRoot.appendChild(blogEntry);
+        // Create and Append Entry to the blogEntries
+        let blogEntry = new BlogEntry(cleanTitle, cleanSummary, date, entryId, bgColor.value);
+        blogEntry.id = `blogEntry${entryId}`;
+        blogEntries.appendChild(blogEntry);
 
         // Reset fields on close
         postTitle.value = ``;
@@ -70,9 +56,57 @@ function init() {
         bgColor.value = `#FFFFFF`;
     });
 
+    // Delete & Edit Functions
+    /* The delete and edit functions are called from the onclick attributes on entry elements
+     * themselves, so they need to store the Id of the entry that is calling the dialog.
+     */
+    let currentId = null;
+    // Delete Button Function
+    function showDelete(id) {
+        currentId = id;
+        deleteDialog.showModal();
+    }
+    // This has to be appended to the button element, otherwise it's not defined for some reason
+    HTMLButtonElement.prototype.showDelete = showDelete;
+    deleteDialog.addEventListener('close', (event) => {
+        if (deleteDialog.returnValue === `delete`) {
+            deleteEntry(currentId);
+        }
+        uncertain.innerHTML = `I'm not sure`;
+    });
     // Extra [I'm not sure] button on Delete
     const uncertain = document.getElementById('uncertain');
     uncertain.addEventListener('click', () => {
         uncertain.innerHTML = `It's okay to be unsure <3`;
+    });
+
+    // Edit Button Function
+    const editPostTitle = document.getElementById('editPostTitle');
+    const editSummary = document.getElementById('editSummary');
+    const editBgColor = document.getElementById('editBgColor');
+    function showEdit(id) {
+        currentId = id;
+        editPostTitle.value = getEntryTitle(id);
+        editSummary.value = getEntrySummary(id);
+        editBgColor.value = getBgColor(id);
+        
+        editDialog.showModal();
+    }
+    // This has to be appended to the button element, otherwise it's not defined for some reason
+    HTMLButtonElement.prototype.showEdit = showEdit;
+    editDialog.addEventListener('close', (event) => {
+        if (editDialog.returnValue === `cancel`) {
+            return;
+        }
+
+        // Sanitize User Input (All users are evil!)
+        let cleanTitle = DOMPurify.sanitize(editPostTitle.value);
+        let cleanSummary = DOMPurify.sanitize(editSummary.value);
+
+        // Keep Same Id
+        let entryId = currentId;
+
+        // Edit Entry
+        editEntry(cleanTitle, cleanSummary, entryId, editBgColor.value);
     });
 }

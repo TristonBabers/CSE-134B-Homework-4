@@ -4,7 +4,8 @@
         <h3>${title}</h3>
         <p>${summary}</p>
         <time>Posted at ${time}.</time>
-        <button class="delete" id="delete${entryId}" onclick="deleteEntry(${entryId})">Delete</button>
+        <button class="delete" id="delete${entryId}" onclick="showDelete(${entryId})">Delete</button>
+        <button class="edit" id="delete${entryId}" onclick="showEdit(${entryId})">Edit</button>
     </article>
     <style>
         #post${entryId} {
@@ -16,7 +17,7 @@
 class BlogEntry extends HTMLElement {
     constructor(title, summary, time, id, bgColor) {
         super();
-
+        let entryTitle = title;
         let entryTime = time;
         let entryId = id;
         let bgColorStyle = document.createElement('style');
@@ -32,34 +33,53 @@ class BlogEntry extends HTMLElement {
 <h3>${title}</h3>
 <p>${summary}</p>
 <time>Posted at ${time}.</time>
-<button class="delete" id="delete${entryId}" onclick="deleteEntry(${entryId})">Delete</button>
+<button class="delete" id="delete${entryId}" onclick="showDelete(${entryId})">Delete</button>
+<button class="edit" id="delete${entryId}" onclick="showEdit(${entryId})">Edit</button>
 `;
         // Attach Blog Entry onto Document
         this.attachShadow({mode: 'open'});
         this.shadowRoot.append(entryContent, bgColorStyle);
     }
 }
- 
+
+
+/* I honestly wanted the following functions to be a part of the class declared above, but I
+ * had a lot of trouble implementing that, so this is the work around.
+ */ 
 function deleteEntry(id) {
-    window.alert(`Attempting to delete post${id}`); // DEBUG
     let blogEntry = document.getElementById(`blogEntry${id}`);
-    let shadowRoot = blogEntry.shadowRoot;
-    let edit = document.createElement('h1');
-    edit.textContent = "WOWOWW";
-    blogEntry.shadowRoot.innerHTML = '';
+    blogEntry.shadowRoot.textContent = '';
 };
-HTMLButtonElement.prototype.deleteEntry = deleteEntry;
-// This has to be appended to the document, otherwise its not findable for some reason
 
-function editEntry(id) {
-    window.alert(`Attempting to edit post${id}`); // DEBUG
+function getEntryTitle(id) {
     let blogEntry = document.getElementById(`blogEntry${id}`);
-    let shadowRoot = blogEntry.shadowRoot;
-    let edit = document.createElement('h1');
-    edit.textContent = "WOWOWW";
-    blogEntry.shadowRoot.innerHTML = '';
-};
-HTMLButtonElement.prototype.deleteEntry = deleteEntry;
+    return blogEntry.shadowRoot.firstChild.firstChild.nextSibling.textContent;
+}
 
-export{BlogEntry, deleteEntry};
+function getEntrySummary(id) {
+    let blogEntry = document.getElementById(`blogEntry${id}`);
+    return blogEntry.shadowRoot.firstChild.firstChild.nextSibling.nextSibling.nextSibling.textContent;
+}
+
+function getBgColor(id) {
+    let blogEntry = document.getElementById(`blogEntry${id}`);
+    return blogEntry.shadowRoot.firstChild.nextSibling.textContent.slice(-11, -4);
+}
+
+function editEntry(title, summary, id, bgColor) {
+    
+    // Edit Title
+    let blogEntry = document.getElementById(`blogEntry${id}`);
+    blogEntry.shadowRoot.firstChild.firstChild.nextSibling.nextSibling.nextSibling.textContent = title;
+
+    // Edit Summary
+    blogEntry.shadowRoot.firstChild.firstChild.nextSibling.nextSibling.nextSibling.textContent = summary;
+
+    // Edit BgColor
+    let bgStyle = blogEntry.shadowRoot.firstChild.nextSibling.textContent;
+    let updatedBgStyle = bgStyle.slice(0, -11) + bgColor + bgStyle.slice(-4, bgStyle.length);
+    blogEntry.shadowRoot.firstChild.nextSibling.textContent = updatedBgStyle;
+};
+
+export{BlogEntry, deleteEntry, getEntryTitle, getEntrySummary, getBgColor, editEntry};
 
